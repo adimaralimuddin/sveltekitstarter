@@ -1,0 +1,109 @@
+model LineTran {
+  id        String @id @default(cuid())
+  native    String
+  value     String
+  // relations
+  line      Line @relation(fields: [lineId],references: [id] ,onDelete: Cascade)
+  lineId    String
+}
+
+model Line {
+
+
+  char String?
+  onLoad String?
+  onPlay String?
+  onEnd String?
+  onNext String?
+
+  // experiments 
+
+
+  // regular
+  id          String          @id @default(cuid())
+  ind         Int             @default(autoincrement())
+  lang        String
+  type        LineVariants    @default(diag)
+  text        String?
+  eng         String?
+
+  trans LineTran[]  // remove
+  skipable  Boolean           @default(false) // remove
+  align       Alignment       @default(center) //remove
+  speaker     Speaker         @default(a) // remove
+  roman       String? // remove
+  value       String? // remove
+  textAudio   String?
+  engAudio    String? // remove
+  image       String? // maybe
+  meanerId    String? // remove
+  voice       String?         @default("f1") // remove
+  showSpeaker Boolean?        @default(false) // remove
+  quiz        Boolean         @default(false)
+  playable    Boolean         @default(false)
+  engPlayable Boolean         @default(false)
+  show        ShowEnums       @default(yes)
+  showEng     ShowEnums       @default(onEnded)
+  showRoman   ShowEnums       @default(yes)
+  done        Boolean         @default(false)
+
+  ansType     SideOption      @default(text)
+  optType     SideOption      @default(tran)
+  
+  prev        String? 
+  next        String?
+  
+
+  lessonId    String
+  lesson      Lesson          @relation(fields: [lessonId], references: [id], onDelete: Cascade) // remove
+  stepId      String?
+  step        Step?           @relation(fields: [stepId], references: [id], onDelete: Cascade)
+  elems       elem[]
+}
+
+enum LineVariants {
+  diag
+  select
+  match
+  arrange
+  filling
+  writing
+  speaking
+  obj
+  narrate
+  scene
+
+
+	// @@map("LineTypeOptions")
+}
+
+enum SideOption {
+  text
+  tran
+  roman
+  img
+  textAudio
+  eng
+  engAudio
+}
+
+enum ShowEnums {
+  yes
+  no
+  onPlay
+  onDone
+  onEnded
+}
+
+enum Speaker {
+  narator
+  a
+  b
+  c
+}
+
+enum Alignment {
+  center
+  left
+  right
+}

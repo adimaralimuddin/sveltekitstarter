@@ -1,0 +1,55 @@
+model elem {
+
+  // native    String // must remove
+  // trans     Tran[] 
+  // otherTrans String[] // must remove
+  // textAudio Audio? @relation(fields: [textAudioId],references: [id])
+  // textAudioId String? 
+  // img Img? @relation(fields: [imgId],references: [id])
+  // imgId String?
+  
+  id        String          @id @default(cuid())
+  ind       Int             @default(autoincrement())
+  type      ElemTypeOptions
+  // lang      String
+  text      String
+  eng       String?
+  aud   String?
+  img   String?
+
+  color     String         @default("e")
+  pined     Boolean         @default(false)
+  // wordId    String?
+  // lessonId  String?
+  // lesson Lesson? @relation(fields: [lessonId],references: [id])
+  // vocabId   String?
+
+  // engAudio  String?
+  // textAudio String?
+  lineId    String?
+  line      Line?           @relation(fields: [lineId], references: [id], onDelete: Cascade)
+  // vocab     VocabSub?       @relation(fields: [vocabId], references: [id], onDelete: Cascade)
+  // word      Word?           @relation(fields: [wordId], references: [id])
+
+  // vocabLesson Lesson? @relation(fields: [vocabLessonId],references: [id])
+  // vocabLessonId String?
+}
+
+model Tran {
+  id    String @id @default(cuid())
+  native String 
+  value String 
+  // elems elem[] 
+
+  @@unique([native,value])
+}
+
+
+enum ElemTypeOptions {
+  word
+  plain
+  img
+  textAud
+  engAud
+  letter
+}

@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["prismaSchemaFolder"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+enum Status {
+  published
+  idle
+  archived
+}
+
+
+enum StatStatus { 
+  // wither the stat is create, completed or passed by the user.
+  created
+  started
+  completed 
+  failed
+  passed
+  reviewed
+}
+
+
+enum Mode {
+  preview 
+  checkpoint
+  normal
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

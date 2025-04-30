@@ -1,0 +1,84 @@
+model UserStat {
+  userId        String   @id @unique
+  user  User @relation(fields: [userId], references: [id],onDelete: Cascade)
+}
+
+model User {
+  id                String        @id @unique
+  username          String?       @unique
+  avatar            String?
+  email             String?       @unique
+  password_hash     String?       @unique
+  registered        Boolean?      @default(false)
+  verified          Boolean?
+  darkmode          Boolean       @default(false)
+  role              UserRole      @default(learner)
+  subscription      Subscription  @default(freemium)
+  lang              String?
+  native            String @default("en")
+  courseId          String?
+  level Int @default(1)
+  points Int @default(0)
+  referer String?
+  // isCourseCompleted Boolean       @default(false)
+  // moduleId          String?
+  // moduleInd         Int?
+  // lessonId          String?
+  // lessonInd         Int?
+  courseStats       CourseStat[]
+  // editor            Editor?
+  // grammarStats      GrammarStat[]
+  key               Key[]
+  Session           Session[]
+
+  // refs
+  // level String?
+  // vocabStats        SubStat[]
+
+  LessonStat LessonStat[]
+
+  ModuleStat ModuleStat[]
+
+  UserStat UserStat[]
+  createdAt DateTime @default(now())
+}
+
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Key {
+  id              String  @id @unique
+  hashed_password String?
+  user_id         String
+  user            User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+}
+
+enum UserRole {
+  learner
+  editor
+  admin
+}
+
+enum Subscription {
+  freemium
+  premium
+}
+
+// enum EditorTabs {
+//   users
+//   courses
+//   detail
+//   courseId
+//   modules
+//   moduleId
+//   lessons
+//   lessonId
+// }

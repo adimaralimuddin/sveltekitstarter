@@ -1,0 +1,69 @@
+model Module {
+  id          String      @id @unique @default(cuid())
+  ind         Int
+  title       String
+  langName    String
+  lang        String
+  description String?
+  type        LessonKinds @default(learn)
+  courseId    String
+  status      Status      @default(published)
+  level Int @default(1)
+  // courseStats CourseStat[]
+  lessons     Lesson[]
+  course      Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessonCount Int         @default(0)
+
+  // navigations 
+  nextModuleId  String?
+  prevModuleId  String?
+  firstLessonId String?
+  stats         ModuleStat[]
+  LessonStats   LessonStat[]
+  color String @default("")
+
+    img        Img?   @relation(fields: [imgId], references: [id])
+  imgId    String?
+
+  @@unique([courseId, title, ind, type])
+}
+
+
+model ModuleStat {
+  id        String  @id @default(cuid())
+  // lang String 
+  completed Boolean @default(false)
+
+  // progress Int @default(0)
+  completedLessonCounts Int        @default(0)
+  status                StatStatus @default(created)
+  nextLessonId  String?
+  // totalLessons Int @default(0)
+  prev                  String?
+  next                  String?
+
+  module   Module @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  moduleId String
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  course   Course @relation(fields: [courseId], references: [id])
+  courseId String @default("es-beginner")
+
+  // new
+  progress        Int @default(0)
+  completedLesson Int @default(0)
+  totalLessons    Int @default(0)
+
+  @@unique([moduleId, userId])
+}
+
+
+
+// enum ModuleKinds {
+//   module
+//   vocabs
+//   grammars
+//   stories
+// }

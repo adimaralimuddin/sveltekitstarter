@@ -1,0 +1,107 @@
+model Lesson {
+  id       String @id @default(cuid())
+  ind      Int    @default(autoincrement())
+  langName String
+  lang     String
+
+  // meta
+  mode   Mode    @default(normal)
+  status Status  @default(published)
+  free   Boolean @default(false)
+  totalSteps Int @default(0)
+  level Int @default(1)
+
+  // contents
+  title       String
+  description String?
+  type        LessonKinds @default(learn)
+  startupStep String // !remove?
+  isFirst Boolean @default(false) //?remove?
+  playType PlayType @default(LEARN)
+
+  // counts
+  wordCount    Int @default(0)
+  grammarCount Int @default(0)
+  storyCount   Int @default(0)
+
+  // relations
+  moduleId String
+  courseId String
+  lessonId String? // !remove?
+  imgId    String?
+  // courseStats  CourseStat[]
+
+  grammars   String[]
+  immersions String[]
+  // relations
+  // grammarStats GrammarStat?
+  // lesson       Lesson?      @relation("BlogOwnerHistory", fields: [lessonId], references: [id])
+  // lessons      Lesson[]     @relation("BlogOwnerHistory")
+  module     Module?      @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  stats      LessonStat[]
+  img        Img?         @relation(fields: [imgId], references: [id])
+  lines      Line[]
+  steps      Step[]
+  // elems      elem[]
+
+  // navigations 
+  nextLessonId String?
+  prevLessonId String?
+
+  @@unique([moduleId, title, ind, lessonId])
+}
+
+model LessonStat {
+  id String @id @default(cuid())
+
+  // scores
+  score         Int @default(0)
+  scoreVocabs   Int @default(0)
+  scoreGrammars Int @default(0)
+  correctVocabs  Int @default(0)
+  correctGrammars  Int @default(0)
+  // words
+  // strongWords Int?    
+  weakWords   String[]
+  // vocabs      Json[]
+
+  // states
+  status        StatStatus @default(created)
+  played        Boolean    @default(false)
+  completed     Boolean    @default(false)
+  
+  dateCompleted DateTime?
+
+
+  lesson        Lesson     @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  lessonId      String
+
+  module   Module? @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  moduleId String
+
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  next   String?
+  prev   String?
+
+  @@unique([userId, lessonId])
+}
+
+enum LessonKinds {
+  lesson
+  learn
+  vocab
+  grammar
+  story
+  culture
+}
+
+enum PlayType {
+  teaching
+  LEARN
+  ROLEPLAY 
+  TPRS
+  DIALOGUE
+  STORY
+}
+

@@ -1,0 +1,152 @@
+[
+	{
+		"ind": 1,
+		"title": "Introduction to Spanish",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "Learn the basics of Spanish pronunciation and greetings.",
+		"type": "learn",
+		"status": "published",
+		"lessonCount": 0
+	},
+	{
+		"ind": 2,
+		"title": "Basic Spanish Phrases",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "Simple phrases for common everyday interactions.",
+		"type": "learn",
+		"status": "published",
+		"lessonCount": 0
+	},
+	{
+		"ind": 3,
+		"title": "Spanish Vocabulary: Family and Friends",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "Essential vocabulary related to family and social interactions.",
+		"type": "learn",
+		"status": "published",
+		"lessonCount": 0
+	},
+	{
+		"ind": 4,
+		"title": "Introduction to Spanish Grammar",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "Basics of Spanish grammar, including nouns and pronouns.",
+		"type": "learn",
+		"status": "published",
+		"lessonCount": 0
+	},
+	{
+		"ind": 5,
+		"title": "Spanish Verb Conjugation: Present Tense",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "Learn how to conjugate regular verbs in the present tense.",
+		"type": "learn",
+		"status": "published",
+		"lessonCount": 0
+	},
+	{
+		"ind": 6,
+		"title": "Common Spanish Adjectives",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "Learn adjectives commonly used in Spanish.",
+		"type": "learn",
+		"status": "published",
+		"lessonCount": 0
+	},
+	{
+		"ind": 7,
+		"title": "Spanish Pronouns and Their Usage",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "Understanding subject, object, and possessive pronouns.",
+		"type": "learn",
+		"status": "published",
+		"lessonCount": 0
+	},
+	{
+		"ind": 8,
+		"title": "Spanish Numbers and Time",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "Learn to tell time and count in Spanish.",
+		"type": "learn",
+		"status": "published",
+		"lessonCount": 0
+	},
+	{
+		"ind": 9,
+		"title": "Conversational Spanish: Asking Questions",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "How to ask basic questions in Spanish.",
+		"type": "practice",
+		"status": "published",
+		"lessonCount": 0
+	},
+	{
+		"ind": 10,
+		"title": "Spanish Food and Drink Vocabulary",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "Essential vocabulary for food, drinks, and dining out.",
+		"type": "learn",
+		"status": "published",
+		"lessonCount": 0
+	},
+	{
+		"ind": 11,
+		"title": "Spanish Verb Conjugation: Past Tense",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "Learn to conjugate regular verbs in the past tense.",
+		"type": "learn",
+		"status": "published",
+		"lessonCount": 0
+	},
+	{
+		"ind": 12,
+		"title": "Spanish Prepositions and Connectors",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "Learn common prepositions and how to connect ideas.",
+		"type": "learn",
+		"status": "published",
+		"lessonCount": 0
+	},
+	{
+		"ind": 13,
+		"title": "Conversational Spanish: Expressing Opinions",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "Learn to express likes, dislikes, and opinions.",
+		"type": "practice",
+		"status": "published",
+		"lessonCount": 0
+	},
+	{
+		"ind": 14,
+		"title": "Spanish Verb Conjugation: Future Tense",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "Learn to conjugate verbs in the future tense.",
+		"type": "learn",
+		"status": "published",
+		"lessonCount": 0
+	},
+	{
+		"ind": 15,
+		"title": "Spanish Vocabulary: Travel and Directions",
+		"langName": "Spanish",
+		"lang": "es",
+		"description": "Learn essential vocabulary for travel and asking for directions.",
+		"type": "learn",
+		"status": "published",
+		"lessonCount": 0
+	}
+]

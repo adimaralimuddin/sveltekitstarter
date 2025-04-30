@@ -1,0 +1,83 @@
+model Course {
+  // primaries
+  id           String       @id @default(cuid())
+  title        String       @db.VarChar(20)
+  langName     String
+  lang         String
+  level        Level  
+  description  String?      @db.VarChar(20)
+  status      Status        @default(idle)
+
+  // refs
+  lesson0   String?
+  lesson1   String?
+
+  // counts & stat
+  wordCount    Int?         @default(0)
+  grammarCount Int?         @default(0)
+  moduleCount  Int?         @default(0)
+  lessonCount  Int?         @default(0)
+  courseStats  CourseStat[]
+
+  // relations
+  modules      Module[]
+
+  @@unique([lang, level])
+  ModuleStat ModuleStat[]
+}
+
+
+model CourseStat {
+  lang        String
+  userId      String
+  courseId    String
+  lessonLevel Int     @default(0)
+  passed  Boolean @default(false)
+  userLevel Int @default(1)
+  xp Int @default(0)
+// remove ------
+  // moduleId    String
+  // lessonId    String?
+  // moduleInd   Int
+  // lessonInd   Int
+  // remove -------
+
+  // words might be removed
+  totalWords  Int  @default(0)
+  newWords    Int  @default(0)
+  weakWords   Int  @default(0)
+
+  // modules
+  // totalModules Int?
+  moduleCompleted Int  @default(0)
+  nextModuleId String?
+  nextLearnModuleId String?
+  nextVocabModuleId String?
+  nextGrammarModuleId String?
+  nextEmmerseModuleId String?
+  // moduleProgress Int? // = moduleCompletedCounts / totalModules
+
+  // lessons
+  // totalLessons Int?
+  lessonCompleted Int @default(0)
+  // lessonProgress Int? // = lessonCompletedCounts / totalLessons
+
+  progress    Int @default(0) // moduleProgress + lessonProgress
+  isCompleted Boolean @default(false)
+  
+  // relations
+  course      Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  // lesson      Lesson? @relation(fields: [lessonId], references: [id])
+  // module      Module  @relation(fields: [moduleId], references: [id])
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([courseId, userId])
+}
+
+enum Level {
+  beginner
+  elementary
+  intermediate
+  advance
+  expert
+}

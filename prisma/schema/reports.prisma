@@ -1,0 +1,37 @@
+model Report {
+  id  String @id @default(cuid())
+  type ReportType
+  subType ReportSubtype
+  meta Json?
+  by ReportBy 
+  from ReportFrom 
+  userId String?
+  description String
+  // device Json? 
+  // requestType: api-client, server-client , load,
+  createdAt DateTime @default(now())
+
+}
+
+enum ReportType {
+  ERROR 
+  BUG
+}
+
+enum ReportSubtype {
+  crash 
+  ui 
+  incorrect_data
+}
+
+enum ReportBy {
+  user 
+  system
+}
+
+enum ReportFrom {
+  server 
+  client
+  page_load
+  hooks
+}

@@ -1,0 +1,43 @@
+model Img {
+  id        String @id @default(cuid())
+  name      String       
+  data      String
+  attr      Json?
+  // elems     elem[]
+  type      String @default("svg")
+  folderId  String
+  folder    Folder @relation(fields: [folderId], references: [id] ,onDelete: Cascade)
+  // Folder Folder[]
+
+  Lesson Lesson[]
+  module Module[]
+}
+
+enum ImgKinds {
+  svg 
+  base64
+}
+
+
+
+model Audio {
+  
+  id String @id @default(cuid())
+  src String
+  text String @unique
+  // elems elem[]
+  meta String?
+  assetId String
+  @@index([text])
+}
+
+model Folder {
+  id        String    @id @default(cuid())
+  name        String     
+  parentId  String?  @map("folderId")
+  folder    Folder?   @relation("subFolders", fields: [parentId], references: [id],onDelete: Cascade)
+  folders   Folder[]  @relation("subFolders")
+  Files Img[]
+}
+
+

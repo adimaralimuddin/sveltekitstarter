@@ -1,0 +1,14 @@
+model Step {
+  id         String  @id @default(cuid())
+  ind        Int     @default(autoincrement())
+  prev       String?
+  next       String?
+  lang       String
+  lineInd    Int     @default(0)
+  lessonId   String
+  nextButton String  @default("Next")
+  color      String?
+  done       Boolean @default(false)
+  lines      Line[]
+  lesson     Lesson  @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+}
