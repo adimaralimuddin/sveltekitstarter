@@ -11,7 +11,10 @@
 
 <div id="theme-div" data-theme={theme} class="min-h-screen min-w-screen">
 	<ThemeToggler/>
-	<slot />
+	<div>
+		<a href="/">home</a>
+		<slot />
+	</div>
 </div>
 
 
